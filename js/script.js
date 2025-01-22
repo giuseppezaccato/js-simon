@@ -1,4 +1,3 @@
-
 // **BONUS:**
 // - Inseriamo la validazione: se l'utente mette due numeri uguali o inserisce cose diverse da numeri lo blocchiamo in qualche modo.
 //     - Se l’utente ha inserito qualcosa di non valido, segnaliamolo visivamente nel form.
@@ -10,17 +9,24 @@ const countdown = document.getElementById("countdown");
 const answers = document.getElementById("answers-form");
 
 //task riempio numArray con 5 numeri random
-for (let i = 0; i < 5; i++) {
-    numArray.push(random(1, 50));
+for (let i = 0; numArray.length < 5; i++) {
+
+    //---controllo i doppi non presenti!
+    let randomNum = random(1, 50)
+    if (!(numArray.includes(randomNum))) {
+        numArray.push(random(1, 50));
+    } else {
+        i--
+    }
     console.log(numArray);
 }
 console.log(numArray)
-// numList.createElement('li') //se funziona questo è MEGLIO del console.log
 
 // //task  scrivo i 5 numeri come < li > nella < ul > numList ripescandoli dall'array!
 // Visualizzare in pagina 5 numeri casuali
 for (let i = 0; i < numArray.length; i++) {
     const listItem = document.createElement('li');
+    // numList.innerHTML += (`<li> ${numArray} </li>`); //* usando direttamente il template literal
     listItem.textContent = numArray[i];
     numList.appendChild(listItem);
 }
@@ -33,7 +39,7 @@ function random(min, max) {
 //task imposto countdown 
 const contoAllaRovescia = setInterval(decremento, 1000);
 
-let counter = 30; //fix RICORDA DI FARLO TORNARE 30 A FINE ESERCIZIO!
+let counter = 3; //fix RICORDA DI FARLO TORNARE 30 A FINE ESERCIZIO!
 
 // Dopo 30 secondi i numeri scompaiono e appaiono invece 5 input in cui l'utente deve inserire i numeri che ha visto precedentemente,
 
@@ -75,13 +81,14 @@ btn.addEventListener('click', function (event) {
 
     for (i = 0; i < inputForm.length; i++) {
         inputNumbers.push((inputForm[i]).value); //?  è necessario?
-        if (inputNumbers[i].includes(numArray[i])) {
-            finalNumbers.push(numArray[i]);
+        if (numArray.includes(parseInt(inputForm[i].value))) {
+            finalNumbers.push(inputForm[i].value);
         }
     }
     console.log(finalNumbers);
 
     if (finalNumbers.length > 0) {
+        result.classList.replace("text-danger", "text-success");
         result.innerHTML = `Complimenti, hai indovinato: ${finalNumbers.length} numeri : ${finalNumbers.join('-')}`;
     } else {
         result.innerHTML = "Peccato Nessun numero indovinato.";
