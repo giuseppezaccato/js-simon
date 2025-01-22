@@ -39,7 +39,7 @@ function random(min, max) {
 //task imposto countdown 
 const contoAllaRovescia = setInterval(decremento, 1000);
 
-let counter = 3; //fix RICORDA DI FARLO TORNARE 30 A FINE ESERCIZIO!
+let counter = 30; //fix RICORDA DI FARLO TORNARE 30 A FINE ESERCIZIO!
 
 // Dopo 30 secondi i numeri scompaiono e appaiono invece 5 input in cui l'utente deve inserire i numeri che ha visto precedentemente,
 
@@ -65,7 +65,7 @@ function decremento() {
 
 //task dichiaro bottone e array vuoto degli input
 const btn = document.querySelector('button');
-const inputNumbers = []; //?  è necessario?
+// const inputNumbers = []; //?  è necessario?
 
 //task raccolgo i dati inseriti nei 5 input e ne creo un array finalNumbers
 const inputForm = document.querySelectorAll('.form-control');
@@ -80,7 +80,7 @@ btn.addEventListener('click', function (event) {
     event.preventDefault();
 
     for (i = 0; i < inputForm.length; i++) {
-        inputNumbers.push((inputForm[i]).value); //?  è necessario?
+        // inputNumbers.push((inputForm[i]).value); //?  è necessario?
         if (numArray.includes(parseInt(inputForm[i].value))) {
             finalNumbers.push(inputForm[i].value);
         }
